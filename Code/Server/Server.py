@@ -123,6 +123,7 @@ class Server:
             self.battery_reminder()
         except Exception as e:
             print(e)
+            
     def battery_reminder(self):
         if max(self.battery_voltage) < 6.4:
             self.turn_off_server()
@@ -187,7 +188,7 @@ class Server:
                 elif cmd.CMD_HEAD in data:
                     self.servo.setServoAngle(15,int(data[1]))
                 elif cmd.CMD_SONIC in data:
-                    command=cmd.CMD_SONIC+'#'+str(self.sonic.getDistance())+"\n"
+                    command=cmd.CMD_SONIC+'#'+str(self.sonic.get_distance())+"\n"
                     self.send_data(self.connection1,command)
                 elif cmd.CMD_POWER in data:
                     self.measuring_voltage(self.connection1)
